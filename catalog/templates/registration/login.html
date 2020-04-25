@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    {% if form.error %}
+        <p> Your username and password did not match. Please try again!</p>
+    {% endif %}
+
+    {% if next%}
+        {% if user.is_authentificated%}
+            <p> Your account doesn't access to this page. Plaese login with
+                with an account that has access</p>
+        {% else %}
+                <p>Please login to see this page!</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}" >
+        {% csrf_token%}
+        <table style="height: 70px;">
+            <tr>
+                <td>{{ form.username.label_tag}}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        <hr/>
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        
+    </form>
+{% endblock%}
+
+    

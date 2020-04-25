@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>My profile</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{user_form | crispy}}
+    {{blogger_form|crispy}}
+    <a href="{% url 'profile-detail' user.id %}">Cancel</a>
+    
+    <input type="submit" value="Save changes">
+
+</form>
+
+{% endblock %}

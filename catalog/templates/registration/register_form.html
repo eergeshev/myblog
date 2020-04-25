@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <!-- {{user_form |crispy }}
+    {{user_form.user.first_name }}
+    {{blogger_form |crispy }} -->
+    {{form |crispy}}
+    
+    <a href="{% url 'index'%}">Cancel</a>     <input type="submit" value="Sign Up" style="padding: 5px 30px; " >
+</form>
+{% endblock %}

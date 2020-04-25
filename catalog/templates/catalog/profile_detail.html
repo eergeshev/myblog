@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1><i>My Blog:</i> {{user.username}}</h1><h3 align = 'right'><a href="{% url 'edit-profile' user.id %}" >Edit</a></h3>
+
+<p><i>First-name: </i> <strong> {{ user.first_name }}</strong></p>
+<p><i>Last-name: </i><strong>  {{user.last_name}}</strong></p>
+<p><i>E-mail: </i><strong>  {{user.email}}</strong></p>
+{{ blogger.bio }}
+
+<hr/>
+<div>
+    <p><strong>My Posts</strong></p>
+    <table>
+    
+        {% for blog in blogger.blog_set.all %}
+        <tr>
+        <td><a href="{% url 'blog-detail' blog.pk %}">{{ blog }}</a> </td>
+        <td>   ({{ blog.post_date }})</td> 
+        <td><a href="{% url 'blog-update' blog.pk %}">Edit</a></td>
+        <td><a href="{% url 'delete-post' blog.pk %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    
+    </table>
+    <p><a href="{% url 'new-post' blogger.pk %}">Add new post</a></p>
+</div>
+
+{% endblock %}

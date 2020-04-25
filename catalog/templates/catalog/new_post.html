@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{form |crispy }}
+    
+    
+    <input type="submit" value="Save" style="padding: 5px 30px; " >
+</form>
+{% endblock %}

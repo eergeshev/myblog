@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>My Blog</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <style>
+    body {
+      background: grey;
+    }
+    
+    .content {
+      max-width: 1020px;
+      max-height: 1100px;
+      margin-top:40px;
+      margin-left: 320px;
+      background:white;
+      background-image: fixed;
+      padding: 0px;
+      padding-bottom:400px;
+      padding-left: 15px;
+      /* background-image: url("{% static '111.jpg' %}");
+      background-size: cover; */
+     
+    }
+    a:link {
+          
+      padding: 9px 20px;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+    }
+    ul li a:hover {
+      width:180x ;
+      background-color:#ccdeff;
+      color: white;
+      /* padding: 5px 20px; */
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 5px;
+      }
+    
+  </style>
+</head>
+<body>
+     <!-- <div class="container-fluid"> -->
+  <div class="content">
+    <div class="row">
+      <div class="col-md-2" style="padding-bottom: 600px; background-color:	#9ec9ff;">
+      {% block sidebar %}
+        
+        <ul class="navbar-nav navbar-right" style="font-size: 18px; padding-top: 40px;"  padding-left:50px  >
+        
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'blogs' %}">All Blogs</a></li>
+          <li><a href="{% url 'bloggers' %}">All Bloggers</a></li>
+          <hr/>
+
+          {% if user.is_authenticated %}
+          <li><strong>User:</strong>  {{ user.get_username }}</li>
+          <li><a href="{% url 'profile-detail' user.pk %}">My Blog</a></li>
+          <hr/>
+          <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login'%}?next={{request.path}}">Login </a></li>
+          <li><a href="{% url 'register' %}">Sign up </a></li>
+          
+          {% endif %}
+        </ul>
+      {% endblock %}
+      </div>
+      <div class="col-md-9" style="padding-left:40px; padding-top: 50px;" >{% block content %} Welcome to Avenir Library {% endblock %}</div>
+        {% block pagination %}
+        {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+        {% endblock %} 
+      </div>
+    </div>
+  </div>
+</body>
+</html>

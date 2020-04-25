@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>My Blog</title>{% endblock %}
+
+{% block content %}
+<div align="center";>
+  <h2>WELCOME TO MYBLOG</h2>
+  <p></p>
+ 
+  <p>The MyBlog has the following record counts:</p>
+  <ul class="navbar-nav">
+    <li><strong>Bloggers:</strong> {{ blogger_count }}</li>
+    <li><strong>Blogs:</strong> {{ blog_count }}</li>
+    <li><strong>Comments:</strong> {{ comment_count }}</li>
+    
+  </ul>
+</div>
+{% endblock %}
