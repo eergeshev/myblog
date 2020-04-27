@@ -17,7 +17,7 @@ def index(request):
     comment_count = Comment.objects.all().count()
 
     context = {'blogger_count': blogger_count,
-                'blog_count': blogger_count,
+                'blog_count': blog_count,
                 'comment_count': comment_count
                 }
     return render(request, 'index.html', context = context)
