@@ -13,12 +13,12 @@ from django.contrib.auth import login, authenticate
 
 def index(request):
     # blogger_count = Blogger.objects.all().count()
-    blog_count = Blog.objects.all().count()
-    comment_count = Comment.objects.all().count()
+    # blog_count = Blog.objects.all().count()
+    # comment_count = Comment.objects.all().count()
 
     context = {
-                'blog_count': blog_count,
-                'comment_count': comment_count
+                # 'blog_count': blog_count,
+                # 'comment_count': comment_count
                 }
     return render(request, 'index.html', context = context)
 
