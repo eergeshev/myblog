@@ -15,9 +15,9 @@
 
     {% for blog in blog_list %}
     <tr>
-        <td><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></td> 
-        <td>{{blog.post_date}}</td>
-        <td><a href="{% url 'blogger-detail' blog.author.pk %}"> {{blog.author}}</a></td> 
+      <td><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></td> 
+      <td>{{blog.post_date}}</td>
+      <td><a href="{% url 'blogger-detail' blog.author.pk %}"> {{blog.author}}</a></td> 
                      
     </tr>
     {% endfor %}
